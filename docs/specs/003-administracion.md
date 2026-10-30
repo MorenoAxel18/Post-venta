@@ -39,8 +39,9 @@ Que un administrador gestione usuarios, perfiles, permisos y plantillas desde la
 - La opción *Configuración* del menú pide `ADMIN_USUARIOS`.
 
 ## Restricciones y limitaciones
-- **Los cambios de permisos o la desactivación aplican en el siguiente inicio de sesión** del usuario
-  afectado (el JWT dura hasta 8 h). Ver spec 001.
+- **Desactivar un usuario lo saca al instante** (su siguiente petición recibe 401, spec 005).
+- **Los cambios de permisos de un perfil aplican en el siguiente inicio de sesión** de sus usuarios
+  (el JWT dura hasta 8 h). Ver spec 001.
 - Un usuario con solo `ADMIN_REGLAS` (sin `ADMIN_USUARIOS`) no ve el menú *Configuración*.
 - La bitácora muestra máximo 500 registros por consulta (200 por defecto), sin paginación.
 - El nombre del perfil en la barra lateral solo se traduce para ADMIN/SUPERVISOR/AGENTE; perfiles nuevos muestran su código.
@@ -82,7 +83,7 @@ Que un administrador gestione usuarios, perfiles, permisos y plantillas desde la
 
 **Pendientes / bloqueados**
 - [ ] Probar las pantallas a mano en navegador y anotar ajustes de UX
-- [ ] Corte inmediato de sesión al desactivar un usuario — *bloqueado por: decisión en spec 001*
+- [x] Corte inmediato de sesión al desactivar un usuario (spec 005)
 - [ ] Paginación de la bitácora y filtros por usuario/fecha
 - [ ] Sincronizar plantillas con Treble — *bloqueado por: Treble*
 

@@ -44,6 +44,9 @@ def crear_app() -> FastAPI:
         version="0.1.0",
         description="Campañas, atención humana y monitoreo de WhatsApp",
         lifespan=lifespan,
+        docs_url="/docs" if s.docs_activos else None,
+        redoc_url="/redoc" if s.docs_activos else None,
+        openapi_url="/openapi.json" if s.docs_activos else None,
     )
     app.add_middleware(
         CORSMiddleware,

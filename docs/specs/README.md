@@ -13,6 +13,7 @@ es un error: se corrige uno de los dos en el mismo cambio.
 | 002 | [Campañas](002-campanas.md) | Implementada (envío simulado) |
 | 003 | [Administración](003-administracion.md) | Implementada |
 | 004 | [Monitoreo de campañas](004-monitoreo-campanas.md) | Implementada |
+| 005 | [Seguridad de acceso](005-seguridad.md) | Implementada |
 
 Pendientes sin spec todavía: atención humana, integración con Treble, monitoreo de atención y encuestas.
 

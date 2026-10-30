@@ -40,9 +40,10 @@ Estructura base del sistema: inicio de sesión, perfiles con permisos y protecci
 Estos son los permisos *iniciales*; después se administran desde Configuración (spec 003).
 
 ## Restricciones y limitaciones
-- **El JWT lleva los permisos y no se consulta la BD en cada petición.** Si se desactiva un usuario
-  o se cambian sus permisos, el cambio aplica en su siguiente inicio de sesión. El token dura
-  `JWT_EXPIRACION_MINUTOS` (480 = 8 h por defecto).
+- **El JWT lleva los permisos.** Si se cambian los permisos de un perfil, aplican en el siguiente inicio
+  de sesión. El token dura `JWT_EXPIRACION_MINUTOS` (480 = 8 h por defecto).
+- **Desactivar un usuario sí aplica al instante:** cada petición revisa en la BD que siga activo (spec 005).
+- Login limitado a 5 intentos fallidos por correo+IP en 15 min (spec 005).
 - `catalogos.sembrar()` solo **agrega** lo que falta; no modifica permisos de perfiles existentes.
   Un permiso nuevo en código no se asigna solo a perfiles ya creados: se asigna desde Configuración.
 - Usuarios demo (`DATOS_DEMO=true`) con contraseña conocida: **apagar en cualquier ambiente real**.
@@ -50,7 +51,7 @@ Estos son los permisos *iniciales*; después se administran desde Configuración
 
 ## Decisiones
 - **Permisos, no roles**, en el código: los perfiles se pueden crear o cambiar sin tocar código.
-- **JWT sin estado** para no consultar la BD en cada petición (ver limitación arriba).
+- **JWT con permisos** para no cargar perfil y permisos en cada petición; solo se consulta si el usuario sigue activo.
 - **Monolito modular** (FastAPI + React) en lugar de microservicios: equipo pequeño, un solo despliegue.
 
 ## Archivos
@@ -69,7 +70,8 @@ Estos son los permisos *iniciales*; después se administran desde Configuración
 - [x] Entorno local en puertos 5433/8001
 
 **Pendientes / bloqueados**
-- [ ] Decidir si desactivar un usuario corta su sesión al instante (consulta a BD por petición o versión de token) — *bloqueado por: decisión del equipo*
+- [x] Desactivar un usuario corta su sesión al instante (spec 005)
+- [ ] Decidir si los permisos se recargan de la BD en cada petición — *bloqueado por: decisión del equipo*
 - [ ] Recuperación de contraseña — *bloqueado por: definir canal (correo corporativo)*
 - [ ] Apagar `DATOS_DEMO` y definir `JWT_SECRET` real en el primer ambiente compartido
 
@@ -79,3 +81,4 @@ Estos son los permisos *iniciales*; después se administran desde Configuración
 | 2026-10-30 | Spec escrita a partir del código existente (fase 0) | Equipo |
 | 2026-10-30 | BD local en puerto 5433 y backend en 8001 para convivir con otro proyecto | Equipo |
 | 2026-10-30 | `Usuario.rol` en el frontend pasa a `string` para permitir perfiles nuevos | Equipo |
+| 2026-10-30 | Límite de intentos, login en tiempo constante, usuario activo por petición, `DOCS_ACTIVOS` (spec 005) | Equipo |

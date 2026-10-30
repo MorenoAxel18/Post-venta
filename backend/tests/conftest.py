@@ -28,6 +28,15 @@ def esquema():
     Base.metadata.drop_all(engine)
 
 
+@pytest.fixture(autouse=True)
+def limitador_limpio():
+    """Todas las pruebas comparten IP: sin esto, los logins fallidos de una bloquearían a las demás."""
+    from app.auth.seguridad import limitador_login
+    limitador_login.reiniciar()
+    yield
+    limitador_login.reiniciar()
+
+
 @pytest.fixture(scope="session")
 def client(esquema):
     with TestClient(app) as c:  # el "with" ejecuta el arranque (catálogos y usuarios demo)
