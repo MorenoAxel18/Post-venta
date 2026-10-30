@@ -13,6 +13,13 @@ class Settings(BaseSettings):
     jwt_secret: str = "cambia-este-secreto-de-desarrollo-por-uno-largo-y-seguro"
     jwt_expiracion_minutos: int = 480
 
+    # Fuerza bruta: intentos fallidos por correo+IP antes de bloquear (por IP sola se permite 4 veces más)
+    login_max_intentos: int = 5
+    login_bloqueo_minutos: int = 15
+
+    # Swagger (/docs) y openapi.json: apagar fuera de desarrollo
+    docs_activos: bool = True
+
     cors_origenes: list[str] = ["http://localhost:5173"]
 
     # Pendiente de confirmar con el negocio: ¿quien prepara una campaña puede aprobarla?

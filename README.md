@@ -100,7 +100,11 @@ antes de crear/mover archivos o cambiar la BD, y todo cambio importante actualiz
 | `LOTE_ENVIO` | `50` | Mensajes por ciclo del scheduler |
 | `INTERVALO_SCHEDULER_SEGUNDOS` | `30` | Cada cuánto corre el scheduler |
 | `SCHEDULER_ACTIVO` | `true` | Dejarlo encendido en una sola réplica |
-| `DATOS_DEMO` | `true` | Usuarios y plantillas de prueba |
+| `DATOS_DEMO` | `true` | Usuarios y plantillas de prueba. **Apagar en cualquier ambiente real** |
+| `JWT_EXPIRACION_MINUTOS` | `480` | Duración de la sesión (8 h) |
+| `LOGIN_MAX_INTENTOS` | `5` | Intentos fallidos por correo+IP antes de bloquear |
+| `LOGIN_BLOQUEO_MINUTOS` | `15` | Duración del bloqueo |
+| `DOCS_ACTIVOS` | `true` | Swagger en `/docs`. **Apagar fuera de desarrollo** |
 
 Cambios al modelo de datos: modifica los modelos, genera la migración con
 `alembic revision --autogenerate -m "descripcion"`, revísala y aplica con `alembic upgrade head`.
@@ -110,4 +114,4 @@ Cambios al modelo de datos: modifica los modelos, genera la migración con
 - Confirmar el formato real de la cartera, quién aprueba y las plantillas reales de Treble.
 - `TrebleMessagingGateway` y webhook de estados (entregado/leído) cuando se tenga acceso a la API.
 - Fases siguientes: atención humana (colas, asignación, WebSocket) y monitoreo.
-- Los permisos viajan en el JWT: si se desactiva un usuario o se cambian los permisos de su perfil, el cambio aplica en su siguiente inicio de sesión (el token dura `JWT_EXPIRACION_MINUTOS`, 8 h por defecto).
+- Los permisos viajan en el JWT: si se cambian los permisos de un perfil, aplican en el siguiente inicio de sesión (el token dura `JWT_EXPIRACION_MINUTOS`, 8 h por defecto). Desactivar un usuario sí lo saca al instante (spec 005).
