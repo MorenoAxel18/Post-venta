@@ -1,0 +1,10 @@
+id_cliente,nombre,telefono,fecha_primer_pago,enlace
+10234,María López,5512345678,20/11/2026,https://fincomun.com.mx/pagos
+10567,Carlos Ramírez,+52 55 8765 4321,22/11/2026,https://fincomun.com.mx/pagos
+10871,Ana Torres,521 5544332211,25/11/2026,https://fincomun.com.mx/pagos
+10987,Javier Morales,,25/11/2026,https://fincomun.com.mx/pagos
+11234,Lucía Fernández,551234567,27/11/2026,https://fincomun.com.mx/pagos
+11302,Roberto Díaz,55-1234-5678,28/11/2026,https://fincomun.com.mx/pagos
+11455,Elena Cruz,55AB123456,28/11/2026,https://fincomun.com.mx/pagos
+,Pedro Sánchez,5599887766,29/11/2026,https://fincomun.com.mx/pagos
+11590,Patricia Gómez,(55) 4433 2299,30/11/2026,https://fincomun.com.mx/pagos

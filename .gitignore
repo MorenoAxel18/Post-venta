@@ -1,0 +1,22 @@
+# Backend
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+# Secretos: ningún .env se sube, en ninguna carpeta (solo la plantilla .env.example)
+.env
+.env.*
+*.env
+!.env.example
+# Carteras con datos de clientes: nunca al repo (para pruebas está docs/cartera_prueba.csv)
+*.xlsx
+*.xls
+# Frontend
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+# IDE / SO
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
